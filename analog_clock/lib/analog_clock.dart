@@ -4,6 +4,8 @@
 
 import 'dart:async';
 
+import 'package:analog_clock/inner_shadow.dart';
+import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
@@ -98,12 +100,12 @@ class _AnalogClockState extends State<AnalogClock> {
     final customTheme = Theme.of(context).brightness == Brightness.light
         ? Theme.of(context).copyWith(
             // Hour hand.
-            primaryColor: Color(0xFF4285F4),
+            primaryColor: Color(0xFF2740cc),
             // Minute hand.
-            highlightColor: Color(0xFF8AB4F8),
+            highlightColor: Color(0xFF4868cf),
             // Second hand.
-            accentColor: Color(0xFF669DF6),
-            backgroundColor: Color(0xFFD2E3FC),
+            accentColor: Color(0xFFe8fafe),
+            backgroundColor: Color(0xFFd2f3fc),
           )
         : Theme.of(context).copyWith(
             primaryColor: Color(0xFFD2E3FC),
@@ -133,47 +135,113 @@ class _AnalogClockState extends State<AnalogClock> {
       ),
       child: Container(
         color: customTheme.backgroundColor,
-        child: Stack(
-          children: [
-            // Example of a hand drawn with [CustomPainter].
-            DrawnHand(
-              color: customTheme.accentColor,
-              thickness: 4,
-              size: 1,
-              angleRadians: _now.second * radiansPerTick,
+        child: InnerShadow(
+          color: Colors.white.withOpacity(0.09),
+          offset: Offset(20.0, 50.0),
+          blur: 50.0,
+          child: Container(
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 30.0,
+                  color: Colors.white70.withOpacity(.20),
+                  style: BorderStyle.solid),
+              shape: BoxShape.circle,
+              color: customTheme.backgroundColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.7),
+                  blurRadius: 52.0,
+                  offset: Offset(-25, -25),
+                ),
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.03),
+                  blurRadius: 10.0,
+                  offset: Offset(25, 25),
+                )
+              ],
             ),
-            DrawnHand(
-              color: customTheme.highlightColor,
-              thickness: 16,
-              size: 0.9,
-              angleRadians: _now.minute * radiansPerTick,
-            ),
-            // Example of a hand drawn with [Container].
-            ContainerHand(
-              color: Colors.transparent,
-              size: 0.5,
-              angleRadians: _now.hour * radiansPerHour +
-                  (_now.minute / 60) * radiansPerHour,
-              child: Transform.translate(
-                offset: Offset(0.0, -60.0),
-                child: Container(
-                  width: 32,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: customTheme.primaryColor,
+            child: Stack(
+              children: [
+                // Example of a hand drawn with [CustomPainter].
+                // DrawnHand(
+                //   color: customTheme.highlightColor,
+                //   thickness: 4,
+                //   size: 1,
+                //   angleRadians: _now.second * radiansPerTick,
+                // ),
+                ContainerHand(
+                  color: Colors.transparent,
+                  size: 1,
+                  angleRadians: _now.second * radiansPerTick,
+                  child: Transform.translate(
+                    offset: Offset(0.0, -90.0),
+                    child: Container(
+                      width: 5,
+                      height: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: customTheme.highlightColor,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                ContainerHand(
+                  color: Colors.transparent,
+                  size: 0.7,
+                  angleRadians: _now.minute * radiansPerTick,
+                  child: Transform.translate(
+                    offset: Offset(0.0, -120.0),
+                    child: Container(
+                      width: 10,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 10.0,
+                              offset: Offset(-20, 10.0))
+                        ],
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: customTheme.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                ContainerHand(
+                  color: Colors.transparent,
+                  size: 0.6,
+                  angleRadians: _now.hour * radiansPerHour +
+                      (_now.minute / 60) * radiansPerHour,
+                  child: Transform.translate(
+                    offset: Offset(00.0, -120.0),
+                    child: Container(
+                      width: 22,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 10.0,
+                              offset: Offset(-25, 10.0))
+                        ],
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: customTheme.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  bottom: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: weatherInfo,
+                  ),
+                ),
+              ],
             ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: weatherInfo,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
