@@ -110,14 +110,15 @@ class _AnalogClockState extends State<AnalogClock> {
             // Minute hand.
             highlightColor: Color(0xFF4868cf),
             // Second hand.
-            accentColor: Color(0xFFe8fafe),
+            // accentColor: Color(0xFFe8fafe),
+            accentColor: Colors.white70.withOpacity(.20),
             backgroundColor: Color(0xFFd2f3fc),
           )
         : Theme.of(context).copyWith(
-            primaryColor: Color(0xFFD2E3FC),
-            highlightColor: Color(0xFF4285F4),
-            accentColor: Color(0xFF8AB4F8),
-            backgroundColor: Color(0xFF3C4043),
+            primaryColor: Color(0xFFd5d9f0),
+            highlightColor: Color(0xFF6ea2fa),
+            accentColor: Colors.black87.withOpacity(.08),
+            backgroundColor: Color(0xFF2D3748),
           );
 
     final time = DateFormat.Hms().format(DateTime.now());
@@ -149,19 +150,21 @@ class _AnalogClockState extends State<AnalogClock> {
             decoration: BoxDecoration(
               border: Border.all(
                   width: 20.0,
-                  color: Colors.white70.withOpacity(.20),
+                  color: customTheme.accentColor,
                   style: BorderStyle.solid),
               shape: BoxShape.circle,
               color: customTheme.backgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.8),
+                  //color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withOpacity(0.2),
                   blurRadius: 25.0,
-                  spreadRadius: -25.0,
+                  spreadRadius: -40.0,
                   offset: Offset(-25, -25),
                 ),
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  // color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.8),
                   blurRadius: 25.0,
                   spreadRadius: -25.0,
                   offset: Offset(25, 25),
@@ -205,9 +208,9 @@ class _AnalogClockState extends State<AnalogClock> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withOpacity(0.4),
                               blurRadius: 10.0,
-                              offset: Offset(-20, 10.0))
+                              offset: Offset(-25, 10.0))
                         ],
                         borderRadius: BorderRadius.circular(30.0),
                         color: customTheme.primaryColor,
@@ -228,7 +231,7 @@ class _AnalogClockState extends State<AnalogClock> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withOpacity(0.4),
                               blurRadius: 10.0,
                               offset: Offset(-25, 10.0))
                         ],
@@ -254,7 +257,7 @@ class _AnalogClockState extends State<AnalogClock> {
                               child: Icon(
                                 icons[_condition],
                                 size: 90.0,
-                                color: Color(0xFFFFC901),
+                                color: Color(0xFFFFC901).withOpacity(0.8),
                               ),
                             ),
                             Positioned(
@@ -271,8 +274,7 @@ class _AnalogClockState extends State<AnalogClock> {
                                         _temperature.substring(
                                             0, _temperature.length - 2),
                                         style: TextStyle(
-                                            color: customTheme.primaryColor
-                                                .withOpacity(0.9),
+                                            color: customTheme.primaryColor,
                                             fontSize: 45.0,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -317,7 +319,7 @@ class _AnalogClockState extends State<AnalogClock> {
                     child: Text(
                       _location,
                       style: TextStyle(
-                        color: customTheme.highlightColor,
+                        color: customTheme.primaryColor,
                         fontSize: 18.0,
                         fontFamily: 'OpenSans',
                         fontWeight: FontWeight.bold,
