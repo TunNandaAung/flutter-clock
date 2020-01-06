@@ -42,6 +42,8 @@ class _AnalogClockState extends State<AnalogClock> {
   var _location = '';
   Timer _timer;
 
+  var icons = {'sunny': Icons.wb_sunny};
+
   @override
   void initState() {
     super.initState();
@@ -99,6 +101,10 @@ class _AnalogClockState extends State<AnalogClock> {
     //    [DigitalClock].
     final customTheme = Theme.of(context).brightness == Brightness.light
         ? Theme.of(context).copyWith(
+            // Use the old theme but apply the following three changes
+            textTheme: Theme.of(context).textTheme.apply(
+                  fontFamily: 'OpenSans',
+                ),
             // Hour hand.
             primaryColor: Color(0xFF2740cc),
             // Minute hand.
@@ -136,27 +142,28 @@ class _AnalogClockState extends State<AnalogClock> {
       child: Container(
         color: customTheme.backgroundColor,
         child: InnerShadow(
-          color: Colors.white.withOpacity(0.09),
+          color: Colors.black.withOpacity(0.01),
           offset: Offset(20.0, 50.0),
           blur: 50.0,
           child: Container(
-            padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               border: Border.all(
-                  width: 30.0,
+                  width: 20.0,
                   color: Colors.white70.withOpacity(.20),
                   style: BorderStyle.solid),
               shape: BoxShape.circle,
               color: customTheme.backgroundColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.7),
-                  blurRadius: 52.0,
+                  color: Colors.white.withOpacity(0.8),
+                  blurRadius: 25.0,
+                  spreadRadius: -25.0,
                   offset: Offset(-25, -25),
                 ),
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.03),
-                  blurRadius: 10.0,
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 25.0,
+                  spreadRadius: -25.0,
                   offset: Offset(25, 25),
                 )
               ],
@@ -231,12 +238,92 @@ class _AnalogClockState extends State<AnalogClock> {
                     ),
                   ),
                 ),
+
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 30.0),
+                      child: Container(
+                        height: 120.0,
+                        width: 120.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              left: 30.0,
+                              child: Icon(
+                                icons[_condition],
+                                size: 90.0,
+                                color: Color(0xFFFFC901),
+                              ),
+                            ),
+                            Positioned(
+                              top: 40.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: <Widget>[
+                                      Text(
+                                        _temperature.substring(
+                                            0, _temperature.length - 2),
+                                        style: TextStyle(
+                                            color: customTheme.primaryColor
+                                                .withOpacity(0.9),
+                                            fontSize: 45.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        _temperature.substring(
+                                            _temperature.length - 2,
+                                            _temperature.length),
+                                        style: TextStyle(
+                                            color: customTheme.primaryColor,
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    _temperatureRange,
+                                    style: TextStyle(
+                                        color: customTheme.primaryColor,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )),
+                ),
                 Positioned(
                   left: 0,
                   bottom: 0,
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: weatherInfo,
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: Text(
+                      _location,
+                      style: TextStyle(
+                        color: customTheme.highlightColor,
+                        fontSize: 18.0,
+                        fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
                 ),
               ],
