@@ -11,6 +11,7 @@ dependencies:
   flutter_clock_helper:
     path: ../flutter_clock_helper
   cupertino_icons: ^0.1.2
+  flare_flutter: ^1.8.3
 
 dev_dependencies:
   flutter_test:
@@ -19,14 +20,17 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
-fonts:
-  - family: OpenSans
-    fonts:
-      - asset: assets/fonts/OpenSans-Bold.ttf
-        weight: 700
-      - asset: assets/fonts/OpenSans-ExtraBold.ttf
-        weight: 800
-      - asset: assets/fonts/OpenSans-Light.ttf
-        weight: 300
-      - asset: assets/fonts/OpenSans-Regular.ttf
-        weight: 400
+  assets:
+    - assets/animated_icons/
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400

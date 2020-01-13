@@ -5,6 +5,7 @@
 import 'dart:async';
 
 import 'package:analog_clock/inner_shadow.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,15 @@ class _AnalogClockState extends State<AnalogClock> {
   var _location = '';
   Timer _timer;
 
-  var icons = {'sunny': Icons.wb_sunny};
+  var icons = {
+    'sunny': 'assets/animated_icons/sunny.flr',
+    'rainy': 'assets/animated_icons/rainy.flr',
+    'foggy': 'assets/animated_icons/foggy.flr',
+    'cloudy': 'assets/animated_icons/cloudy.flr',
+    'snowy': 'assets/animated_icons/snowy.flr',
+    'windy': 'assets/animated_icons/windy.flr',
+    'thunderstorm': 'assets/animated_icons/thunderstorm.flr',
+  };
 
   @override
   void initState() {
@@ -113,13 +122,19 @@ class _AnalogClockState extends State<AnalogClock> {
             // accentColor: Color(0xFFe8fafe),
             accentColor: Colors.white70.withOpacity(.20),
             backgroundColor: Color(0xFFd2f3fc),
-          )
+
+            //white shadow color
+            splashColor: Colors.white.withOpacity(0.8),
+
+            //black shadow color
+            dividerColor: Colors.black.withOpacity(0.1))
         : Theme.of(context).copyWith(
             primaryColor: Color(0xFFd5d9f0),
             highlightColor: Color(0xFF6ea2fa),
             accentColor: Colors.black87.withOpacity(.08),
             backgroundColor: Color(0xFF2D3748),
-          );
+            splashColor: Colors.white.withOpacity(0.2),
+            dividerColor: Colors.black.withOpacity(0.8));
 
     final time = DateFormat.Hms().format(DateTime.now());
     final weatherInfo = DefaultTextStyle(
@@ -156,15 +171,15 @@ class _AnalogClockState extends State<AnalogClock> {
               color: customTheme.backgroundColor,
               boxShadow: [
                 BoxShadow(
-                  //color: Colors.white.withOpacity(0.8),
-                  color: Colors.white.withOpacity(0.2),
+                  color: customTheme.splashColor,
                   blurRadius: 25.0,
-                  spreadRadius: -40.0,
+                  spreadRadius: Theme.of(context).brightness == Brightness.light
+                      ? -25.0
+                      : -40.0,
                   offset: Offset(-25, -25),
                 ),
                 BoxShadow(
-                  // color: Colors.black.withOpacity(0.1),
-                  color: Colors.black.withOpacity(0.8),
+                  color: customTheme.dividerColor,
                   blurRadius: 25.0,
                   spreadRadius: -25.0,
                   offset: Offset(25, 25),
@@ -173,13 +188,6 @@ class _AnalogClockState extends State<AnalogClock> {
             ),
             child: Stack(
               children: [
-                // Example of a hand drawn with [CustomPainter].
-                // DrawnHand(
-                //   color: customTheme.highlightColor,
-                //   thickness: 4,
-                //   size: 1,
-                //   angleRadians: _now.second * radiansPerTick,
-                // ),
                 ContainerHand(
                   color: Colors.transparent,
                   size: 1,
@@ -188,7 +196,7 @@ class _AnalogClockState extends State<AnalogClock> {
                     offset: Offset(0.0, -90.0),
                     child: Container(
                       width: 5,
-                      height: 170,
+                      height: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.0),
                         color: customTheme.highlightColor,
@@ -241,7 +249,6 @@ class _AnalogClockState extends State<AnalogClock> {
                     ),
                   ),
                 ),
-
                 Positioned(
                   right: 0,
                   top: 0,
@@ -253,15 +260,15 @@ class _AnalogClockState extends State<AnalogClock> {
                         child: Stack(
                           children: <Widget>[
                             Positioned(
-                              left: 30.0,
-                              child: Icon(
+                              child: FlareActor(
                                 icons[_condition],
-                                size: 90.0,
-                                color: Color(0xFFFFC901).withOpacity(0.8),
+                                sizeFromArtboard: true,
+                                fit: BoxFit.contain,
+                                animation: 'go',
                               ),
                             ),
                             Positioned(
-                              top: 40.0,
+                              top: 45.0,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
