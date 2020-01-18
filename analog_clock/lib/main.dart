@@ -4,6 +4,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_clock_helper/customizer.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +15,8 @@ import 'analog_clock.dart';
 void main() {
   // A temporary measure until Platform supports web and TargetPlatform supports
   // macOS.
+  WidgetsFlutterBinding.ensureInitialized();
+
   if (!kIsWeb && Platform.isMacOS) {
     // TODO(gspencergoog): Update this when TargetPlatform includes macOS.
     // https://github.com/flutter/flutter/issues/31366
@@ -30,5 +33,6 @@ void main() {
   //
   // Your job is to edit [AnalogClock], or replace it with your own clock
   // widget. (Look in analog_clock.dart for more details!)
+  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(ClockCustomizer((ClockModel model) => AnalogClock(model)));
 }

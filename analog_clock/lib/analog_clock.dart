@@ -127,7 +127,7 @@ class _AnalogClockState extends State<AnalogClock> {
             //black shadow color
             dividerColor: Colors.black.withOpacity(0.1))
         : Theme.of(context).copyWith(
-            primaryColor: Color(0xFFd5d9f0),
+            primaryColor: Colors.white,
             highlightColor: Color(0xFF6ea2fa),
             accentColor: Colors.black87.withOpacity(.08),
             backgroundColor: Color(0xFF2D3748),
