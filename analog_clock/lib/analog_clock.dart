@@ -6,7 +6,6 @@ import 'dart:async';
 
 import 'package:analog_clock/inner_shadow.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
@@ -14,7 +13,6 @@ import 'package:intl/intl.dart';
 import 'package:vector_math/vector_math_64.dart' show radians;
 
 import 'container_hand.dart';
-import 'drawn_hand.dart';
 
 /// Total distance traveled by a second or a minute hand, each second or minute,
 /// respectively.
@@ -137,18 +135,6 @@ class _AnalogClockState extends State<AnalogClock> {
             dividerColor: Colors.black.withOpacity(0.8));
 
     final time = DateFormat.Hms().format(DateTime.now());
-    final weatherInfo = DefaultTextStyle(
-      style: TextStyle(color: customTheme.primaryColor),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(_temperature),
-          Text(_temperatureRange),
-          Text(_condition),
-          Text(_location),
-        ],
-      ),
-    );
 
     return Semantics.fromProperties(
       properties: SemanticsProperties(
@@ -314,15 +300,7 @@ class _AnalogClockState extends State<AnalogClock> {
                   left: 0,
                   bottom: 0,
                   child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: weatherInfo,
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: const EdgeInsets.only(right: 30.0),
                     child: Text(
                       _location,
                       style: TextStyle(

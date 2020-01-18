@@ -1,0 +1,92 @@
+[33mcommit 737acfa2a3c989526f2bc4e6624d9667eecaac0a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: TunNandaAung <tunnandaaung@outlook.com>
+Date:   Mon Jan 13 18:18:09 2020 +0630
+
+    Add Animated Icons
+
+[33mcommit e8b617651ec8ab98e595cd5671cedaa0a0cfaccd[m
+Author: TunNandaAung <tunnandaaung@outlook.com>
+Date:   Mon Jan 6 21:16:47 2020 +0630
+
+    Update dark theme colors
+
+[33mcommit c84c9deb66c23bc1b6a5a0d1c9cb5b2d0902b31d[m
+Author: TunNandaAung <tunnandaaung@outlook.com>
+Date:   Mon Jan 6 20:59:14 2020 +0630
+
+    Tweak light theme ui
+
+[33mcommit e4b20ef9b759009b8ee38f979fcf7684bdcc90d1[m
+Author: TunNandaAung <tunnandaaung@outlook.com>
+Date:   Sun Jan 5 22:43:17 2020 +0630
+
+    Add Base Layout
+
+[33mcommit eb7afa5aa652b936e80cd41336260ee80c3c1c52[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 69d9b95 98e3186
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:07:02 2019 -0800
+
+    Merge pull request #4 from flutter/flutter_clock_upload
+    
+    Flutter clock upload
+
+[33mcommit 98e31864f44de86c4a9b467f9897b5b0dd2c2d8b[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:05:23 2019 -0800
+
+    Add .gitignore to digital ios
+
+[33mcommit ebb0e40b8b29230ef73ded6fca91cfa2cf56a744[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:04:57 2019 -0800
+
+    Add .gitignore to digital android
+
+[33mcommit e5b8d8a476f5d111eb8bdb2295e91f09ad85902e[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:04:29 2019 -0800
+
+    Add .files to digital
+
+[33mcommit 1425f856d24ebcc1690fe91707ca57512ce96f64[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:03:43 2019 -0800
+
+    Add .gitignore to analog android
+
+[33mcommit 3b891f44316a7a8f41aad0ed16c03d15c8a3e86f[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:03:17 2019 -0800
+
+    Add .gitignore to analog ios
+
+[33mcommit 11ad5dc7b883c72e57d3779a0cf91bdc66dedd89[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:02:36 2019 -0800
+
+    Add .files for analog_clock
+
+[33mcommit 0e8f89b982227270a283c437e5000088dab7151b[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 13:01:40 2019 -0800
+
+    Add flutter_clock_helper .metadata
+
+[33mcommit b0dde23495ba44ea492e13bbd0c54fd6278d0eff[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 12:50:37 2019 -0800
+
+    Copy Flutter Clock code
+
+[33mcommit 416e23b19efb1ecd884846d6094cd6a796aa5ced[m
+Author: Mary <maryx@users.noreply.github.com>
+Date:   Fri Nov 15 12:48:33 2019 -0800
+
+    Copy Flutter Clock code
+
+[33mcommit 69d9b95a4eaf9ce8c2024ecbfabc32ab32717f83[m
+Author: Ian Hickson <ian@hixie.ch>
+Date:   Thu Nov 14 16:06:56 2019 -0800
+
+    Initial commit
